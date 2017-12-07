@@ -24,6 +24,7 @@ public class InteractiveController implements AnimationController {
   private boolean selectStatus = false;
   private boolean loop = false;
   private String outputFile;
+  private String color = "default";
 
   /**
    * The constructor of the InteractiveController.
@@ -173,9 +174,9 @@ public class InteractiveController implements AnimationController {
         if (selectStatus) {
           IAnimationModel temp = copy.copy();
           temp.setShapes(selected);
-          result = new HybridView(temp, tick).getSVG(loop);
+          result = new HybridView(temp, tick).getSVG(loop, color);
         } else {
-          result = new HybridView(copy.copy(), tick).getSVG(loop);
+          result = new HybridView(copy.copy(), tick).getSVG(loop, color);
         }
         try {
           PrintWriter writer = new PrintWriter(outputFile);
@@ -195,7 +196,7 @@ public class InteractiveController implements AnimationController {
     this.view.getButton("setColor").addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
-        view.setColor();
+        color = view.setColor();
       }
     });
   }

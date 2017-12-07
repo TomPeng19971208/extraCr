@@ -35,7 +35,7 @@ public class SVGView extends JFrame implements IView {
     panel = new AnimationPanel(shapes, animations, tickPerSecond);
 
     JLabel text = new JLabel();
-    text.setText(panel.toSVG());
+    text.setText(panel.toSVG("default"));
     panel.add(text);
 
     JScrollPane p = new JScrollPane(panel);
@@ -69,6 +69,6 @@ public class SVGView extends JFrame implements IView {
    */
   public String getSVG() {
     // return this.panel.toSVG();
-    return this.panel.toLoopSVG();
+    return this.panel.toLoopSVG("default");
   }
 }

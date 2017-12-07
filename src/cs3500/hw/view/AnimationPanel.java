@@ -188,9 +188,10 @@ public class AnimationPanel extends JPanel implements ActionListener {
    * This is method output all the data into the SVG format. This method outputs a String that is in
    * SVG form.
    *
+   * @param color  the background color
    * @return String of SVG form
    */
-  String toSVG() {
+  String toSVG(String color) {
     String result = "";
     for (Shape s : shapes) {
       String start;
@@ -305,7 +306,7 @@ public class AnimationPanel extends JPanel implements ActionListener {
       result += tempResult;
     }
 
-    return "<svg width=\"1200\" height=\"1200\" version=\"1.1\"\n" +
+    return "<svg viewBox=\"0 0 500 600\" style=\"background: " + color + "\" version=\"1.1\"\n" +
             "    xmlns=\"http://www.w3.org/2000/svg\">\n" + result + "</svg>";
   }
 
@@ -313,9 +314,10 @@ public class AnimationPanel extends JPanel implements ActionListener {
    * This is method output all the data into the SVG format that loops. This method outputs a String
    * that is in SVG form.
    *
+   * @param color  the background color
    * @return String of SVG form that can loop
    */
-  String toLoopSVG() {
+  String toLoopSVG(String color) {
     String result = "";
     for (Shape s : shapes) {
       String start;
@@ -448,7 +450,11 @@ public class AnimationPanel extends JPanel implements ActionListener {
       result += tempResult;
     }
 
-    return "<svg width=\"1200\" height=\"1200\" version=\"1.1\"\n" +
+    float red = this.getBackground().getRed();
+    float green = this.getBackground().getGreen();
+    float blue = this.getBackground().getBlue();
+
+    return "<svg viewBox=\"0 0 500 600\" style=\"background: " + color + "\" version=\"1.1\"\n" +
             "    xmlns=\"http://www.w3.org/2000/svg\">\n" +
             "<rect>\n" +
             "   <animate id=\"base\" begin=\"0;base.end\" dur=\"" + end * 1000 / this.tick +

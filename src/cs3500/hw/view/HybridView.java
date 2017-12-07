@@ -138,11 +138,11 @@ public class HybridView extends JFrame implements IView {
    * @param b whether this svg file is capable of looping
    * @return a svg file that represent the visual of the HybridView
    */
-  public String getSVG(boolean b) {
+  public String getSVG(boolean b, String color) {
     if (!b) {
-      return this.panel.toSVG();
+      return this.panel.toSVG(color);
     } else {
-      return this.panel.toLoopSVG();
+      return this.panel.toLoopSVG(color);
     }
   }
 
@@ -286,8 +286,10 @@ public class HybridView extends JFrame implements IView {
 
   /**
    * this method sets the color to the color, which is entered by the user as a string.
+   *
+   * @return the String the user inputed
    */
-  public void setColor() {
+  public String setColor() {
     String newColor = this.currentColor.getText();
     if (newColor.compareToIgnoreCase("default")==0) {
       this.panel.setBackground(this.original);
@@ -300,6 +302,7 @@ public class HybridView extends JFrame implements IView {
         Color color = (Color)field.get(null);
         //System.out.print(color);
         this.panel.setBackground(color);
+        return this.currentColor.getText();
       } catch (IllegalAccessException e) {
         e.printStackTrace();
       }
@@ -308,6 +311,7 @@ public class HybridView extends JFrame implements IView {
       this.showError(this.currentColor.getText() + " is not a color");
     }
   }
+  return "default";
   }
 
   /**

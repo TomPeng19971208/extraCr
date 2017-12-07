@@ -31,7 +31,7 @@ public class HybridViewTest {
     model.addShape(r);
     model.move(r, 10, 10, 0, 1);
     view = new HybridView(model, 1);
-    String actual = view.getSVG(false);
+    String actual = view.getSVG(false, "default");
     control = new InteractiveController(model, view);
     ((InteractiveController) control).setOutPutFile("out.txt");
     control.execute();
@@ -107,7 +107,7 @@ public class HybridViewTest {
       } catch (IOException e) {
         e.printStackTrace();
       }
-      assertEquals(s, view2.getSVG(false));
+      assertEquals(s, view2.getSVG(false, "default"));
     } catch (FileNotFoundException e) {
       e.printStackTrace();
     }
@@ -122,7 +122,7 @@ public class HybridViewTest {
     model.addShape(r);
     model.move(r, 10, 10, 0, 1);
     view = new HybridView(model, 1);
-    String actual = view.getSVG(true);
+    String actual = view.getSVG(true, "default");
     control = new InteractiveController(model, view);
     ((InteractiveController) control).setOutPutFile("out1.txt");
     control.execute();
@@ -159,7 +159,7 @@ public class HybridViewTest {
     model.move(r, 10, 10, 0, 1);
     view = new HybridView(model, 1);
     control = new InteractiveController(model, view);
-    String actual = view.getSVG(false);
+    String actual = view.getSVG(false, "default");
     ((InteractiveController) control).setOutPutFile("out.txt");
     control.execute();
 
