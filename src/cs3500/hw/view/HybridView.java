@@ -72,7 +72,7 @@ public class HybridView extends JFrame implements IView {
     this.panel = new AnimationPanel(model.getShapes(), model.getAnimation(), tickPerSecond);
     panel.setPreferredSize(new Dimension(1200, 1200));
     this.setLayout(new BorderLayout());
-    this.setColor = new JButton("setColor");
+    this.setColor = new JButton("SetColor");
     this.currentColor = new JTextField("default");
 
     list = new JList(names);
@@ -285,7 +285,7 @@ public class HybridView extends JFrame implements IView {
   }
 
   /**
-   * this method sets the color to the given color.
+   * this method sets the color to the color, which is entered by the user as a string.
    */
   public void setColor() {
     String newColor = this.currentColor.getText();
@@ -295,7 +295,7 @@ public class HybridView extends JFrame implements IView {
     else {
     try {
       Field field = Color.class.getField(this.currentColor.getText());
-      System.out.print(this.currentColor.getText());
+      //System.out.print(this.currentColor.getText());
       try {
         Color color = (Color)field.get(null);
         //System.out.print(color);
