@@ -20,8 +20,9 @@ public class HybridViewTest {
   private HybridView view;
   private AnimationModel model = new AnimationModel();
   private AnimationController control;
-  private Rectangle r = new Rectangle("r", 1, 1, 10, 10, 1, 1,
-          1, 0, 3);
+  private Rectangle r = new Rectangle("r", 1, 1, 10,
+          10, 1, 1,
+          1, 0, 3, 0);
 
   /**
    * This test checks if the export button can export the right svg file.

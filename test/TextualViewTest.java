@@ -12,9 +12,9 @@ import static org.junit.Assert.assertEquals;
 
 public class TextualViewTest {
   private Shape rectangle = new Rectangle("r", 10.0f,10.0f,5.0f,
-          6.0f,3.0f, 1.9f,2.3f,10,40);
+          6.0f,3.0f, 1.9f,2.3f,10,40, 0);
   private Shape oval = new Oval("o", 30.0f,50.0f,2.0f,3.0f,
-          1.0f,2.3f,5.6f,7,220);
+          1.0f,2.3f,5.6f,7,220, 0);
   private TextualView text;
   private IAnimationModel model = new AnimationModel();
 

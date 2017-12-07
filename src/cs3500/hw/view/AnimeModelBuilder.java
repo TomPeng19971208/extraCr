@@ -45,8 +45,10 @@ public class AnimeModelBuilder implements TweenModelBuilder<AnimationModel> {
   @Override
   public TweenModelBuilder<AnimationModel> addOval(String name, float cx, float cy, float xRadius,
                                                    float yRadius, float red, float green,
-                                                   float blue, int startOfLife, int endOfLife) {
-    Oval shape = new Oval(name, cx, cy, xRadius, yRadius, red, green, blue, startOfLife, endOfLife);
+                                                   float blue, int startOfLife, int endOfLife,
+                                                   int layer) {
+    Oval shape = new Oval(name, cx, cy, xRadius, yRadius, red, green, blue, startOfLife, endOfLife,
+            layer);
     this.model.addShape(shape);
     return this;
   }
@@ -70,9 +72,9 @@ public class AnimeModelBuilder implements TweenModelBuilder<AnimationModel> {
   public TweenModelBuilder<AnimationModel> addRectangle(String name, float lx, float ly,
                                                         float width, float height, float red,
                                                         float green, float blue, int startOfLife,
-                                                        int endOfLife) {
+                                                        int endOfLife, int layer) {
     Rectangle shape = new Rectangle(name, lx, ly, width, height, red, green,
-            blue, startOfLife, endOfLife);
+            blue, startOfLife, endOfLife, layer);
     this.model.addShape(shape);
     return this;
   }

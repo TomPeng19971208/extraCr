@@ -14,6 +14,7 @@ public abstract class AbstractShape implements Shape {
   private IAnimation[] animationsMove;
   private IAnimation[] animationsColor;
   private IAnimation[] animationsScale;
+  private int layer;
 
   /**
    * This is the constructor for the abstractShape class. This constructor also construct three list
@@ -27,7 +28,7 @@ public abstract class AbstractShape implements Shape {
    * @param disappears the time when this shape disappears
    */
   AbstractShape(String name, float cRed, float cGreen,
-                float cBlue, int appears, int disappears) {
+                float cBlue, int appears, int disappears, int layer) {
     this.name = name;
     this.cRed = cRed;
 
@@ -38,6 +39,7 @@ public abstract class AbstractShape implements Shape {
     animationsMove = new IAnimation[this.disappears - this.appears + 1];
     animationsColor = new IAnimation[this.disappears - this.appears + 1];
     animationsScale = new IAnimation[this.disappears - this.appears + 1];
+    this.layer = layer;
   }
 
   /**
@@ -245,7 +247,21 @@ public abstract class AbstractShape implements Shape {
    */
   public abstract Shape setShape(String name, float x, float y,
                        float width, float height, float cRed,
-                       float cGreen, float cBlue, int appears, int disappears);
+                       float cGreen, float cBlue, int appears, int disappears, int layer);
 
+  /**
+   * Get the type of the Shape.
+   *
+   * @return enum type of the Shape
+   */
   public abstract String getType();
+
+  /**
+   * Get the layer of the shape.
+   *
+   * @return layer of the shape
+   */
+  public int getLayer() {
+    return this.layer;
+  }
 }

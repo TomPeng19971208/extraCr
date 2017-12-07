@@ -24,8 +24,8 @@ public class Oval extends AbstractShape {
    */
   public Oval(String name, float x, float y,
               float xRadius, float yRadius, float cRed, float cGreen,
-              float cBlue, int appears, int disappears) {
-    super(name, cRed, cGreen, cBlue, appears, disappears);
+              float cBlue, int appears, int disappears, int layer) {
+    super(name, cRed, cGreen, cBlue, appears, disappears, layer);
     this.name = name;
     this.x = x;
     this.y = y;
@@ -129,15 +129,17 @@ public class Oval extends AbstractShape {
    * @param cBlue blue color data of the shape
    * @param appears appearing time of the shape
    * @param disappears disappearing time of the shape
+   * @param layer the layer of the int
    * @return the new shape that is being constructed
    */
   @Override
   public Shape setShape(String name, float x, float y, float width, float height,
-                        float cRed, float cGreen, float cBlue, int appears, int disappears) {
+                        float cRed, float cGreen, float cBlue, int appears, int disappears,
+                        int layer) {
 
     return new Oval(name, x, y,
             width, height, cRed,
-            cGreen, cBlue, appears, disappears);
+            cGreen, cBlue, appears, disappears, layer);
   }
 
   /**

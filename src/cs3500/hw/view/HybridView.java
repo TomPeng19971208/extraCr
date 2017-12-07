@@ -4,16 +4,7 @@ import java.awt.*;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 
-import javax.swing.JButton;
-import javax.swing.JTextField;
-import javax.swing.JList;
-import javax.swing.JScrollPane;
-import javax.swing.BoxLayout;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.Timer;
-import javax.swing.JOptionPane;
-import javax.swing.ListSelectionModel;
+import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
@@ -43,6 +34,7 @@ public class HybridView extends JFrame implements IView {
   private IAnimationModel model1;
   private JTextField currentColor;
   private Color original;
+  private JSlider slider;
   private JList list;
   private ArrayList<Shape> selected = new ArrayList<>();
   private int tick = 1;
@@ -74,7 +66,8 @@ public class HybridView extends JFrame implements IView {
     this.setLayout(new BorderLayout());
     this.setColor = new JButton("SetColor");
     this.currentColor = new JTextField("default");
-
+    this.slider = new JSlider();
+    slider.setValue(0);
     list = new JList(names);
     list.setVisibleRowCount(names.length);
     list.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
@@ -108,6 +101,7 @@ public class HybridView extends JFrame implements IView {
 
     JPanel buttons = new JPanel();
     buttons.setLayout(new GridLayout(3, 3));
+    buttons.add(slider);
     buttons.add(start);
     buttons.add(restart);
     buttons.add(pause);

@@ -83,7 +83,12 @@ public class AnimationModel implements IAnimationModel {
      * @return the difference between their appearing time
      */
     public int compare(Shape s1, Shape s2) {
-      return s1.getAppears() - s2.getAppears();
+      if(s1.getLayer() - s2.getLayer() != 0) {
+        return s1.getLayer() - s2.getLayer();
+      }
+      else {
+        return s1.getAppears() - s2.getAppears();
+      }
     }
   }
 

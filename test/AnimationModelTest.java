@@ -15,9 +15,9 @@ import cs3500.hw.model.Shape;
 public class AnimationModelTest {
   private IAnimationModel model = new AnimationModel();
   private Shape rectangle = new Rectangle("r", 10.0f,10.0f,5.0f,
-          6.0f,3.0f, 1.9f,2.3f,10,40);
+          6.0f,3.0f, 1.9f,2.3f,10,40, 0);
   private Shape oval = new Oval("o", 30.0f,50.0f,2.0f,3.0f,
-          1.0f,2.3f,5.6f,7,220);
+          1.0f,2.3f,5.6f,7,220, 0);
 
   /**
    * This test if the AnimationModel outputs the right String.
@@ -65,7 +65,7 @@ public class AnimationModelTest {
   @Test(expected = IllegalArgumentException.class)
   public void invalidAnimation1() throws Exception {
     rectangle = new Rectangle("r", 10.0f,10.0f,5.0f,
-            6.0f,3.0f, 1.9f,2.3f,10,40);
+            6.0f,3.0f, 1.9f,2.3f,10,40, 0);
     model.addShape(rectangle);
     model.move(rectangle,12.0f,43.0f,1,12);
   }
@@ -78,7 +78,7 @@ public class AnimationModelTest {
   @Test(expected = IllegalArgumentException.class)
   public void invalidAnimation2() throws Exception {
     rectangle = new Rectangle("r", 10.0f,10.0f,5.0f,
-            6.0f,3.0f, 1.9f,2.3f,10,40);
+            6.0f,3.0f, 1.9f,2.3f,10,40, 0);
     model.addShape(rectangle);
     model.move(rectangle,12.0f,43.0f,10,13);
     model.move(rectangle,33.0f,4.0f,11,16);
@@ -92,7 +92,7 @@ public class AnimationModelTest {
   @Test(expected = IllegalArgumentException.class)
   public void invalidAnimation3() throws Exception {
     oval = new Oval("o", 30.0f,50.0f,2.0f,3.0f,
-            1.0f,2.3f,5.6f,7,220);
+            1.0f,2.3f,5.6f,7,220, 0);
     model.addShape(oval);
     model.changeColor(oval,12.0f,43.0f, 3.0f,11,13);
     model.changeColor(oval,33.0f,4.0f, 5.0f,10,16);
@@ -106,7 +106,7 @@ public class AnimationModelTest {
   @Test(expected = IllegalArgumentException.class)
   public void invalidAnimation4() throws Exception {
     rectangle = new Rectangle("r", 10.0f,10.0f,5.0f,
-            6.0f,3.0f, 1.9f,2.3f,10,40);
+            6.0f,3.0f, 1.9f,2.3f,10,40, 0);
     model.addShape(rectangle);
     model.scale(rectangle, 12.0f, 43.0f, 20, 25);
     model.scale(rectangle, 33.0f, 4.0f, 19, 22);
@@ -119,7 +119,7 @@ public class AnimationModelTest {
   @Test(expected = IllegalArgumentException.class)
   public void shapeDoesNotExis1() throws Exception {
     rectangle = new Rectangle("r", 10.0f,10.0f,5.0f,
-            6.0f,3.0f, 1.9f,2.3f,10,40);
+            6.0f,3.0f, 1.9f,2.3f,10,40, 0);
     model.addShape(rectangle);
     model.scale(oval,23.0f,60.2f,30,100);
   }
@@ -131,7 +131,7 @@ public class AnimationModelTest {
   @Test(expected = IllegalArgumentException.class)
   public void shapeDoesNotExist2() throws Exception {
     rectangle = new Rectangle("r", 10.0f,10.0f,5.0f,
-            6.0f,3.0f, 1.9f,2.3f,10,40);
+            6.0f,3.0f, 1.9f,2.3f,10,40, 0);
     model.addShape(rectangle);
     model.changeColor(oval,23.0f,60.2f,40.3f,30,100);
   }
@@ -143,7 +143,7 @@ public class AnimationModelTest {
   @Test(expected = IllegalArgumentException.class)
   public void shapeDoesNotExist3() throws Exception {
     oval = new Oval("o", 30.0f,50.0f,2.0f,3.0f,
-            1.0f,2.3f,5.6f,7,220);
+            1.0f,2.3f,5.6f,7,220, 0);
     model.addShape(oval);
     model.move(rectangle,23.0f,60.2f,30,100);
   }

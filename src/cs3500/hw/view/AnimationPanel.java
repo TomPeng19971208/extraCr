@@ -107,7 +107,7 @@ public class AnimationPanel extends JPanel implements ActionListener {
         g.setColor(new Color(red, green, blue));
         g.fillRect(Math.round(x), Math.round(y), Math.round(width), Math.round(height));
         shapes.set(i, s.setShape(s.getName(), x, y, width,
-                height, red, green, blue, s.getAppears(), s.getDisappears()));
+                height, red, green, blue, s.getAppears(), s.getDisappears(), s.getLayer()));
       }
       if (currentTime <= s.getDisappears()
               && currentTime >= s.getAppears()
@@ -115,7 +115,7 @@ public class AnimationPanel extends JPanel implements ActionListener {
         g.setColor(new Color(red, green, blue));
         g.fillOval(Math.round(x), Math.round(y), Math.round(width), Math.round(height));
         shapes.set(i, s.setShape(s.getName(), x, y, width,
-                height, red, green, blue, s.getAppears(), s.getDisappears()));
+                height, red, green, blue, s.getAppears(), s.getDisappears(), s.getLayer()));
       }
     }
   }
@@ -255,10 +255,12 @@ public class AnimationPanel extends JPanel implements ActionListener {
                   Math.round(y));
           if (type.equals("rect")) {
             s = s.setShape(s.getName(), (float) x, (float) y, s.getWidth(), s.getHeight(),
-                    s.getRed(), s.getGreen(), s.getBlue(), s.getAppears(), s.getDisappears());
+                    s.getRed(), s.getGreen(), s.getBlue(), s.getAppears(), s.getDisappears(),
+                    s.getLayer());
           } else {
             s = s.setShape(s.getName(), (float) x, (float) y, s.getWidth(), s.getHeight(),
-                    s.getRed(), s.getGreen(), s.getBlue(), s.getAppears(), s.getDisappears());
+                    s.getRed(), s.getGreen(), s.getBlue(), s.getAppears(), s.getDisappears(),
+                    s.getLayer());
           }
         } else if (m.getType().equals("changecolor")) {
           float red = m.getInfo()[0];
@@ -274,10 +276,10 @@ public class AnimationPanel extends JPanel implements ActionListener {
                   m.getStart() * 1000 / this.tick);
           if (type.equals("rect")) {
             s = s.setShape(s.getName(), s.getX(), s.getY(), s.getWidth(), s.getHeight(),
-                    red, green, blue, s.getAppears(), s.getDisappears());
+                    red, green, blue, s.getAppears(), s.getDisappears(), s.getLayer());
           } else {
             s = s.setShape(s.getName(), s.getX(), s.getY(), s.getWidth(), s.getHeight(),
-                    red, green, blue, s.getAppears(), s.getDisappears());
+                    red, green, blue, s.getAppears(), s.getDisappears(), s.getLayer());
           }
         } else {
           int width = Math.round(m.getInfo()[0]);
@@ -295,10 +297,12 @@ public class AnimationPanel extends JPanel implements ActionListener {
                   m.getStart() * 1000 / this.tick);
           if (type.equals("rect")) {
             s = s.setShape(s.getName(), s.getX(), s.getY(), (float) width, (float) height,
-                    s.getRed(), s.getGreen(), s.getBlue(), s.getAppears(), s.getDisappears());
+                    s.getRed(), s.getGreen(), s.getBlue(), s.getAppears(), s.getDisappears(),
+                    s.getLayer());
           } else {
             s = s.setShape(s.getName(), s.getX(), s.getY(), (float) width, (float) height,
-                    s.getRed(), s.getGreen(), s.getBlue(), s.getAppears(), s.getDisappears());
+                    s.getRed(), s.getGreen(), s.getBlue(), s.getAppears(), s.getDisappears(),
+                    s.getLayer());
           }
         }
       }
@@ -399,10 +403,12 @@ public class AnimationPanel extends JPanel implements ActionListener {
                   Math.round(y));
           if (type.equals("rect")) {
             s = s.setShape(s.getName(), (float) x, (float) y, s.getWidth(), s.getHeight(),
-                    s.getRed(), s.getGreen(), s.getBlue(), s.getAppears(), s.getDisappears());
+                    s.getRed(), s.getGreen(), s.getBlue(), s.getAppears(), s.getDisappears(),
+                    s.getLayer());
           } else {
             s = s.setShape(s.getName(), (float) x, (float) y, s.getWidth(), s.getHeight(),
-                    s.getRed(), s.getGreen(), s.getBlue(), s.getAppears(), s.getDisappears());
+                    s.getRed(), s.getGreen(), s.getBlue(), s.getAppears(), s.getDisappears(),
+                    s.getLayer());
           }
         } else if (m.getType().equals("changecolor")) {
           float red = m.getInfo()[0];
@@ -418,10 +424,10 @@ public class AnimationPanel extends JPanel implements ActionListener {
                   m.getStart() * 1000 / this.tick);
           if (type.equals("rect")) {
             s = s.setShape(s.getName(), s.getX(), s.getY(), s.getWidth(), s.getHeight(),
-                    red, green, blue, s.getAppears(), s.getDisappears());
+                    red, green, blue, s.getAppears(), s.getDisappears(), s.getLayer());
           } else {
             s = s.setShape(s.getName(), s.getX(), s.getY(), s.getWidth(), s.getHeight(),
-                    red, green, blue, s.getAppears(), s.getDisappears());
+                    red, green, blue, s.getAppears(), s.getDisappears(), s.getLayer());
           }
         } else {
           int width = Math.round(m.getInfo()[0]);
@@ -439,20 +445,18 @@ public class AnimationPanel extends JPanel implements ActionListener {
                   m.getStart() * 1000 / this.tick);
           if (type.equals("rect")) {
             s = s.setShape(s.getName(), s.getX(), s.getY(), (float) width, (float) height,
-                    s.getRed(), s.getGreen(), s.getBlue(), s.getAppears(), s.getDisappears());
+                    s.getRed(), s.getGreen(), s.getBlue(), s.getAppears(), s.getDisappears(),
+                    s.getLayer());
           } else {
             s = s.setShape(s.getName(), s.getX(), s.getY(), (float) width, (float) height,
-                    s.getRed(), s.getGreen(), s.getBlue(), s.getAppears(), s.getDisappears());
+                    s.getRed(), s.getGreen(), s.getBlue(), s.getAppears(), s.getDisappears(),
+                    s.getLayer());
           }
         }
       }
       tempResult += restore + "</" + type + ">\n";
       result += tempResult;
     }
-
-    float red = this.getBackground().getRed();
-    float green = this.getBackground().getGreen();
-    float blue = this.getBackground().getBlue();
 
     return "<svg viewBox=\"0 0 500 600\" style=\"background: " + color + "\" version=\"1.1\"\n" +
             "    xmlns=\"http://www.w3.org/2000/svg\">\n" +

@@ -142,11 +142,13 @@ public interface Shape {
    * @param cBlue blue color data of the shape
    * @param appears appearing time of the shape
    * @param disappears disappearing time of the shape
+   * @param layer the layer of the shape
+   *
    * @return the new shape that is being constructed
    */
   Shape setShape(String name, float x, float y,
                 float width, float height, float cRed,
-                float cGreen, float cBlue, int appears, int disappears);
+                float cGreen, float cBlue, int appears, int disappears, int layer);
 
   /**
    * Get the type of the shape and return it in String.
@@ -154,4 +156,11 @@ public interface Shape {
    * @return type of the shape in String format
    */
   String getType();
+
+  /**
+   * Get the layer of the shape.
+   *
+   * @return layer of the shape
+   */
+  int getLayer();
 }

@@ -27,8 +27,8 @@ public class Rectangle extends AbstractShape {
    */
   public Rectangle(String name, float x, float y,
                    float width, float height, float cRed,
-                   float cGreen, float cBlue, int appears, int disappears) {
-    super(name, cRed, cGreen, cBlue, appears, disappears);
+                   float cGreen, float cBlue, int appears, int disappears, int layer) {
+    super(name, cRed, cGreen, cBlue, appears, disappears, layer);
     this.x = x;
     this.y = y;
     this.width = width;
@@ -131,11 +131,12 @@ public class Rectangle extends AbstractShape {
    */
   @Override
   public Shape setShape(String name, float x, float y, float width, float height,
-                       float cRed, float cGreen, float cBlue, int appears, int disappears) {
+                       float cRed, float cGreen, float cBlue, int appears, int disappears,
+                        int layer) {
 
     return new Rectangle(name, x, y,
     width, height, cRed,
-    cGreen, cBlue, appears, disappears);
+    cGreen, cBlue, appears, disappears, layer);
   }
 
   /**
