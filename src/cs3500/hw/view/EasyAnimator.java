@@ -25,9 +25,9 @@ public final class EasyAnimator {
    */
   public static void main(String[] args) {
     // FILL IN HERE
-    String fileName = "/Users/david.li/Documents/CS3500HW/code5-1-master/resources/buildings.txt";
+    String fileName = "/Users/TomPeng/Documents/github/extraCr/resources/toh-5.txt";
     String viewType = "interactive";
-    String outPutFile = "/Users/david.li/Documents/oo.svg";
+    String outPutFile = "";
     int tickPerSecond = 10;
     IView view = new TextualView("", 1);
 

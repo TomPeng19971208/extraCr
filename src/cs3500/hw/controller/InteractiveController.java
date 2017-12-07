@@ -6,6 +6,8 @@ import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
+import javax.swing.*;
+
 import cs3500.hw.model.IAnimationModel;
 import cs3500.hw.model.Shape;
 import cs3500.hw.view.HybridView;
@@ -50,6 +52,7 @@ public class InteractiveController implements AnimationController {
     this.setLoop();
     this.reset();
     this.export();
+    this.changeColor();
     this.view.makeVisible();
   }
 
@@ -181,6 +184,18 @@ public class InteractiveController implements AnimationController {
         } catch (FileNotFoundException f) {
           f.printStackTrace();
         }
+      }
+    });
+  }
+
+  /**
+   * add changecolor action to changeColor button.
+   */
+  private void changeColor() {
+    this.view.getButton("setColor").addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        view.setColor();
       }
     });
   }

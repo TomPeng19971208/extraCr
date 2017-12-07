@@ -1,9 +1,7 @@
 package cs3500.hw.view;
 
-import java.awt.Dimension;
-import java.awt.BorderLayout;
-import java.awt.GridLayout;
-import java.awt.FlowLayout;
+import java.awt.*;
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
@@ -35,6 +33,7 @@ public class HybridView extends JFrame implements IView {
   private JButton resume;
   private JButton restart;
   private JButton export;
+  private JButton setColor;
   private JButton changeSpeed;
   private JButton loopAnimation;
   private JButton select;
@@ -42,6 +41,8 @@ public class HybridView extends JFrame implements IView {
   private JTextField speed;
   private IAnimationModel model;
   private IAnimationModel model1;
+  private JTextField currentColor;
+  private Color original;
   private JList list;
   private ArrayList<Shape> selected = new ArrayList<>();
   private int tick = 1;
@@ -71,6 +72,8 @@ public class HybridView extends JFrame implements IView {
     this.panel = new AnimationPanel(model.getShapes(), model.getAnimation(), tickPerSecond);
     panel.setPreferredSize(new Dimension(1200, 1200));
     this.setLayout(new BorderLayout());
+    this.setColor = new JButton("setColor");
+    this.currentColor = new JTextField("default");
 
     list = new JList(names);
     list.setVisibleRowCount(names.length);
@@ -112,7 +115,7 @@ public class HybridView extends JFrame implements IView {
     buttons.add(export);
     buttons.add(reset);
 
-    this.speed = new JTextField(10);
+    this.speed = new JTextField(4);
     this.speed.setText(Integer.toString(tickPerSecond));
     this.speed.setEditable(true);
     JPanel speedP = new JPanel();
@@ -120,9 +123,12 @@ public class HybridView extends JFrame implements IView {
     speedP.add(this.changeSpeed);
     speedP.add(this.speed);
     speedP.add(this.loopAnimation);
+    speedP.add(this.setColor);
+    speedP.add(this.currentColor);
 
     this.add(speedP, BorderLayout.BEFORE_FIRST_LINE);
     this.add(buttons, BorderLayout.AFTER_LAST_LINE);
+    this.original = this.getBackground();
     pack();
   }
 
@@ -196,6 +202,9 @@ public class HybridView extends JFrame implements IView {
     }
     if (s.compareToIgnoreCase("select") == 0) {
       return this.select;
+    }
+    if (s.compareToIgnoreCase("setColor")==0) {
+      return this.setColor;
     }
     if (s.compareToIgnoreCase("reset") == 0) {
       return this.reset;
@@ -271,7 +280,33 @@ public class HybridView extends JFrame implements IView {
     this.panel.timer.setDelay(1000 / this.tick);
     this.panel.setNewPanel(model1.copy().getShapes(), model1.copy().getAnimation());
     this.panel.setLoop(model1, false);
+    this.panel.setBackground(this.original);
     model = model1.copy();
+  }
+
+  /**
+   * this method sets the color to the given color.
+   */
+  public void setColor() {
+    String newColor = this.currentColor.getText();
+    if (newColor.compareToIgnoreCase("default")==0) {
+      this.panel.setBackground(this.original);
+    }
+    else {
+    try {
+      Field field = Color.class.getField(this.currentColor.getText());
+      System.out.print(this.currentColor.getText());
+      try {
+        Color color = (Color)field.get(null);
+        //System.out.print(color);
+        this.panel.setBackground(color);
+      } catch (IllegalAccessException e) {
+        e.printStackTrace();
+      }
+    } catch (NoSuchFieldException e) {
+      e.printStackTrace();
+    }
+  }
   }
 
   /**
