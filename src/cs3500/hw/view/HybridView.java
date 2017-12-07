@@ -305,6 +305,7 @@ public class HybridView extends JFrame implements IView {
       }
     } catch (NoSuchFieldException e) {
       e.printStackTrace();
+      this.showError(this.currentColor.getText() + " is not a color");
     }
   }
   }
