@@ -7,6 +7,8 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 
 import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 import cs3500.hw.model.IAnimationModel;
 import cs3500.hw.model.Shape;
@@ -55,6 +57,15 @@ public class InteractiveController implements AnimationController {
     this.export();
     this.changeColor();
     this.view.makeVisible();
+  }
+
+  private void slide() {
+    this.view.getSlider().addChangeListener(new ChangeListener() {
+      @Override
+      public void stateChanged(ChangeEvent e) {
+        view.setTime();
+      }
+    });
   }
 
   /**

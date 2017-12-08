@@ -53,6 +53,15 @@ public class AnimationPanel extends JPanel implements ActionListener {
   }
 
   /**
+   * Get the end time of the animation.
+   *
+   * @return end time of the animation
+   */
+  int getEnd() {
+    return this.end;
+  }
+
+  /**
    * This method starts the timer for this panel and start drawing graphs in the visual output
    * window.
    */
@@ -138,6 +147,13 @@ public class AnimationPanel extends JPanel implements ActionListener {
         this.setNewPanel(model.copy().getShapes(), model.copy().getAnimation());
       }
     }
+  }
+
+  /**
+   * Set the time of the animation according to the slider.
+   */
+  void setTime(int t) {
+    this.currentTime = t;
   }
 
   /**

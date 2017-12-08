@@ -128,9 +128,13 @@ public class AnimationFileReader {
           break;
         case "to":
           info.setEnd(sc.nextInt());
+          if(sc.hasNext("layer")) {
+            info.setLayer(sc.nextInt());
+          }
+          else {
+            info.setLayer(0);
+          }
           break;
-        case "layer":
-          info.setLayer(sc.nextInt());
         default:
           throw new IllegalStateException("Invalid attribute " + command + " for "
                   + "rectangle");
@@ -172,9 +176,13 @@ public class AnimationFileReader {
           break;
         case "to":
           info.setEnd(sc.nextInt());
+          if(sc.hasNext("layer")) {
+            info.setLayer(sc.nextInt());
+          }
+          else {
+            info.setLayer(0);
+          }
           break;
-        case "layer" :
-          info.setLayer(sc.nextInt());
         default:
           throw new IllegalStateException("Invalid attribute " + command + " for "
                   + "oval");
@@ -305,7 +313,7 @@ public class AnimationFileReader {
     private float b;
     private int start;
     private int end;
-    private int layer = 0;
+    private int layer;
 
 
     ShapeInfo() {

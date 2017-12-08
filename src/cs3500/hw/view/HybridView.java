@@ -66,8 +66,7 @@ public class HybridView extends JFrame implements IView {
     this.setLayout(new BorderLayout());
     this.setColor = new JButton("SetColor");
     this.currentColor = new JTextField("default");
-    this.slider = new JSlider();
-    slider.setValue(0);
+    this.slider = new JSlider(0, this.panel.getEnd(), 0);
     list = new JList(names);
     list.setVisibleRowCount(names.length);
     list.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
@@ -217,6 +216,15 @@ public class HybridView extends JFrame implements IView {
   }
 
   /**
+   * Get the slider from the view.
+   *
+   * @return the slider from the view
+   */
+  public JSlider getSlider(){
+    return this.slider;
+  }
+
+  /**
    * This method shows the error to the users.
    *
    * @param error the error message to be displayed.
@@ -324,5 +332,12 @@ public class HybridView extends JFrame implements IView {
    */
   public JTextField getSpeed() {
     return this.speed;
+  }
+
+  /**
+   * Set the time of the animation according to the slider.
+   */
+  public void setTime() {
+    this.panel.setTime(slider.getValue());
   }
 }
