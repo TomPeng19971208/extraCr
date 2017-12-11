@@ -2,6 +2,8 @@ package cs3500.hw.controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -21,7 +23,7 @@ public class InteractiveController implements AnimationController {
   private IAnimationModel model;
   private HybridView view;
   private IAnimationModel copy;
-  private int tick = 1;
+  private int tick;
   private ArrayList<Shape> selected = new ArrayList<>();
   private boolean selectStatus = false;
   private boolean loop = false;
@@ -35,9 +37,10 @@ public class InteractiveController implements AnimationController {
    * @param view  Hybridview which renders a visual representation of this anime and contains
    *              interactive buttons for user to interact with the program.
    */
-  public InteractiveController(IAnimationModel model, HybridView view) {
+  public InteractiveController(IAnimationModel model, HybridView view, int tick) {
     this.model = model;
     this.view = view;
+    this.tick = tick;
   }
 
   /**
@@ -56,6 +59,7 @@ public class InteractiveController implements AnimationController {
     this.reset();
     this.export();
     this.changeColor();
+    this.slide();
     this.view.makeVisible();
   }
 
@@ -169,6 +173,7 @@ public class InteractiveController implements AnimationController {
       @Override
       public void actionPerformed(ActionEvent e) {
         selectStatus = false;
+        color = "default";
         view.reset();
       }
     });

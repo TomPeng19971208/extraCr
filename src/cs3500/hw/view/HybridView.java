@@ -66,7 +66,7 @@ public class HybridView extends JFrame implements IView {
     this.setLayout(new BorderLayout());
     this.setColor = new JButton("SetColor");
     this.currentColor = new JTextField("default");
-    this.slider = new JSlider(0, this.panel.getEnd(), 0);
+    this.slider = this.panel.getSlider();
     list = new JList(names);
     list.setVisibleRowCount(names.length);
     list.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
@@ -338,6 +338,7 @@ public class HybridView extends JFrame implements IView {
    * Set the time of the animation according to the slider.
    */
   public void setTime() {
+    //this.panel.timer.stop();
     this.panel.setTime(slider.getValue());
   }
 }

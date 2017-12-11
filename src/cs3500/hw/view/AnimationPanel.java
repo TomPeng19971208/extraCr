@@ -8,8 +8,9 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Comparator;
 
-import javax.swing.Timer;
-import javax.swing.JPanel;
+import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 import cs3500.hw.model.IAnimation;
 import cs3500.hw.model.IAnimationModel;
@@ -31,6 +32,7 @@ public class AnimationPanel extends JPanel implements ActionListener {
   private int end = 0;
   private boolean loop = false;
   private IAnimationModel model;
+  private JSlider slider;
 
   /**
    * This is the constructor of the view.AnimationPanel class.
@@ -50,6 +52,7 @@ public class AnimationPanel extends JPanel implements ActionListener {
     if (!shapes.isEmpty()) {
       end = shapes.get(shapes.size() - 1).getDisappears();
     }
+    slider = new JSlider(0, this.end, this.currentTime);
   }
 
   /**
@@ -68,6 +71,14 @@ public class AnimationPanel extends JPanel implements ActionListener {
   void draw() {
     timer.start();
     currentTime = 0;
+  }
+
+  /**
+   * This method gets the slider in the animationPanel.
+   * @return slider in the animationPanel
+   */
+  JSlider getSlider() {
+    return this.slider;
   }
 
   /**
@@ -137,8 +148,9 @@ public class AnimationPanel extends JPanel implements ActionListener {
    */
   @Override
   public void actionPerformed(ActionEvent e) {
-    if (currentTime < end) {
+    if (currentTime <= end) {
       currentTime++;
+      slider.setValue(currentTime);
       repaint();
     } else {
       if (!loop) {
@@ -154,6 +166,7 @@ public class AnimationPanel extends JPanel implements ActionListener {
    */
   void setTime(int t) {
     this.currentTime = t;
+    this.slider.setValue(this.currentTime);
   }
 
   /**

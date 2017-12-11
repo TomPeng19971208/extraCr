@@ -25,9 +25,9 @@ public final class EasyAnimator {
    */
   public static void main(String[] args) {
     // FILL IN HERE
-    String fileName = "/Users/david.li/Documents/CS3500HW/extraCr/resources/toh-3.txt";
-    String viewType = "interactive";
-    String outPutFile = "/Users/david.li/Documents/out.svg";
+    String fileName = "";
+    String viewType = "";
+    String outPutFile = "System.out";
     int tickPerSecond = 10;
     IView view = new TextualView("", 1);
 
@@ -108,7 +108,8 @@ public final class EasyAnimator {
       control.execute();
     } else if (viewType.compareToIgnoreCase("interactive") == 0) {
       view = new HybridView(model, tickPerSecond);
-      InteractiveController controller = new InteractiveController(model, (HybridView) view);
+      InteractiveController controller = new InteractiveController(model,
+              (HybridView) view, tickPerSecond);
       controller.setOutPutFile(outPutFile);
       controller.execute();
     } else {

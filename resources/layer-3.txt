@@ -1,0 +1,11 @@
+rectangle name R lower-left-x 200 lower-left-y 200 width 50 height 100 color 1
+0 0 from 8 to 100
+oval name C center-x 500 center-y 100 x-radius 60 y-radius 30 color 0 0 1
+from 4 to 100 layer 1
+oval name T center-x 100 center-y 500 x-radius 30 y-radius 40 color 0 1 0
+from 1 to 100 layer 2
+move name C moveto 500 100 100 100 from 10 to 26
+move name C moveto 100 100 300 300 from 27 to 35
+move name T moveto 100 500 100 100 from 36 to 51
+move name T moveto 100 100 460 460 from 52 to 62
+move name R moveto 200 200 530 530 from 63 to 73

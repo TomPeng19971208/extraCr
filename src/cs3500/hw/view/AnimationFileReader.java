@@ -129,6 +129,7 @@ public class AnimationFileReader {
         case "to":
           info.setEnd(sc.nextInt());
           if(sc.hasNext("layer")) {
+            sc.next();
             info.setLayer(sc.nextInt());
           }
           else {
@@ -177,6 +178,7 @@ public class AnimationFileReader {
         case "to":
           info.setEnd(sc.nextInt());
           if(sc.hasNext("layer")) {
+            sc.next();
             info.setLayer(sc.nextInt());
           }
           else {
