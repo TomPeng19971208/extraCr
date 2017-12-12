@@ -338,7 +338,6 @@ public class HybridView extends JFrame implements IView {
    * Set the time of the animation according to the slider.
    */
   public void setTime() {
-    //this.panel.timer.stop();
     this.panel.setTime(slider.getValue());
   }
 }

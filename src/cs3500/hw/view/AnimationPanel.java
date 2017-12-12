@@ -33,6 +33,7 @@ public class AnimationPanel extends JPanel implements ActionListener {
   private boolean loop = false;
   private IAnimationModel model;
   private JSlider slider;
+  private boolean forward = true;
 
   /**
    * This is the constructor of the view.AnimationPanel class.
@@ -89,53 +90,106 @@ public class AnimationPanel extends JPanel implements ActionListener {
   @Override
   public void paintComponent(Graphics g) {
     super.paintComponent(g);
-    for (int i = 0; i < shapes.size(); i++) {
-      Shape s = shapes.get(i);
-      float x = s.getX();
-      float y = s.getY();
-      float width = s.getWidth();
-      float height = s.getHeight();
-      float red = s.getRed();
-      float green = s.getGreen();
-      float blue = s.getBlue();
-      for (IAnimation a : moves) {
-        Shape temp = a.getShape();
-        if (s.getName().equals(temp.getName())
-                && currentTime >= a.getStart()
-                && currentTime <= a.getEnd()) {
-          if (a.getType().equals("move")) {
-            x = s.getX() + (a.getInfo()[0] - s.getX()) / (float) (a.getEnd() - currentTime + 1);
-            y = s.getY() + (a.getInfo()[1] - s.getY()) / (float) (a.getEnd() - currentTime + 1);
-          } else if (a.getType().equals("scale")) {
-            width = s.getWidth() + (a.getInfo()[0] - s.getWidth())
-                    / (float) (a.getEnd() - currentTime + 1);
-            height = s.getHeight() + (a.getInfo()[1] - s.getHeight())
-                    / (float) (a.getEnd() - currentTime + 1);
-          } else {
-            red = s.getRed() + (a.getInfo()[0] - s.getRed())
-                    / (float) (a.getEnd() - currentTime + 1);
-            green = s.getGreen() + (a.getInfo()[1] - s.getGreen())
-                    / (float) (a.getEnd() - currentTime + 1);
-            blue = s.getBlue() + (a.getInfo()[2] - s.getBlue())
-                    / (float) (a.getEnd() - currentTime + 1);
+    if(this.forward) {
+      for (int i = 0; i < shapes.size(); i++) {
+        Shape s = shapes.get(i);
+        float x = s.getX();
+        float y = s.getY();
+        float width = s.getWidth();
+        float height = s.getHeight();
+        float red = s.getRed();
+        float green = s.getGreen();
+        float blue = s.getBlue();
+        for (IAnimation a : moves) {
+          Shape temp = a.getShape();
+          if (s.getName().equals(temp.getName())
+                  && currentTime >= a.getStart()
+                  && currentTime <= a.getEnd()) {
+            if (a.getType().equals("move")) {
+              x = s.getX() + (a.getInfo()[0] - s.getX()) / (float) (a.getEnd() - currentTime + 1);
+              y = s.getY() + (a.getInfo()[1] - s.getY()) / (float) (a.getEnd() - currentTime + 1);
+            } else if (a.getType().equals("scale")) {
+              width = s.getWidth() + (a.getInfo()[0] - s.getWidth())
+                      / (float) (a.getEnd() - currentTime + 1);
+              height = s.getHeight() + (a.getInfo()[1] - s.getHeight())
+                      / (float) (a.getEnd() - currentTime + 1);
+            } else {
+              red = s.getRed() + (a.getInfo()[0] - s.getRed())
+                      / (float) (a.getEnd() - currentTime + 1);
+              green = s.getGreen() + (a.getInfo()[1] - s.getGreen())
+                      / (float) (a.getEnd() - currentTime + 1);
+              blue = s.getBlue() + (a.getInfo()[2] - s.getBlue())
+                      / (float) (a.getEnd() - currentTime + 1);
+            }
           }
         }
+        if (currentTime <= s.getDisappears()
+                && currentTime >= s.getAppears()
+                && s.getType().equals("rect")) {
+          g.setColor(new Color(red, green, blue));
+          g.fillRect(Math.round(x), Math.round(y), Math.round(width), Math.round(height));
+          shapes.set(i, s.setShape(s.getName(), x, y, width,
+                  height, red, green, blue, s.getAppears(), s.getDisappears(), s.getLayer()));
+        }
+        if (currentTime <= s.getDisappears()
+                && currentTime >= s.getAppears()
+                && s.getType().equals("oval")) {
+          g.setColor(new Color(red, green, blue));
+          g.fillOval(Math.round(x), Math.round(y), Math.round(width), Math.round(height));
+          shapes.set(i, s.setShape(s.getName(), x, y, width,
+                  height, red, green, blue, s.getAppears(), s.getDisappears(), s.getLayer()));
+        }
       }
-      if (currentTime <= s.getDisappears()
-              && currentTime >= s.getAppears()
-              && s.getType().equals("rect")) {
-        g.setColor(new Color(red, green, blue));
-        g.fillRect(Math.round(x), Math.round(y), Math.round(width), Math.round(height));
-        shapes.set(i, s.setShape(s.getName(), x, y, width,
-                height, red, green, blue, s.getAppears(), s.getDisappears(), s.getLayer()));
-      }
-      if (currentTime <= s.getDisappears()
-              && currentTime >= s.getAppears()
-              && s.getType().equals("oval")) {
-        g.setColor(new Color(red, green, blue));
-        g.fillOval(Math.round(x), Math.round(y), Math.round(width), Math.round(height));
-        shapes.set(i, s.setShape(s.getName(), x, y, width,
-                height, red, green, blue, s.getAppears(), s.getDisappears(), s.getLayer()));
+    }
+    else {
+      for (int i = 0; i < shapes.size(); i++) {
+        Shape s = shapes.get(i);
+        float x = s.getX();
+        float y = s.getY();
+        float width = s.getWidth();
+        float height = s.getHeight();
+        float red = s.getRed();
+        float green = s.getGreen();
+        float blue = s.getBlue();
+        for (IAnimation a : moves) {
+          Shape temp = a.getShape();
+          if (s.getName().equals(temp.getName())
+                  && currentTime >= a.getStart()
+                  && currentTime <= a.getEnd()) {
+            if (a.getType().equals("move")) {
+              x = s.getX() - (a.getInfo()[0] - s.getX()) / (float) (a.getEnd() - currentTime + 1);
+              y = s.getY() - (a.getInfo()[1] - s.getY()) / (float) (a.getEnd() - currentTime + 1);
+            } else if (a.getType().equals("scale")) {
+              width = s.getWidth() - (a.getInfo()[0] - s.getWidth())
+                      / (float) (a.getEnd() - currentTime + 1);
+              height = s.getHeight() - (a.getInfo()[1] - s.getHeight())
+                      / (float) (a.getEnd() - currentTime + 1);
+            } else {
+              red = s.getRed() - (a.getInfo()[0] - s.getRed())
+                      / (float) (a.getEnd() - currentTime + 1);
+              green = s.getGreen() - (a.getInfo()[1] - s.getGreen())
+                      / (float) (a.getEnd() - currentTime + 1);
+              blue = s.getBlue() - (a.getInfo()[2] - s.getBlue())
+                      / (float) (a.getEnd() - currentTime + 1);
+            }
+          }
+        }
+        if (currentTime <= s.getDisappears()
+                && currentTime >= s.getAppears()
+                && s.getType().equals("rect")) {
+          g.setColor(new Color(red, green, blue));
+          g.fillRect(Math.round(x), Math.round(y), Math.round(width), Math.round(height));
+          shapes.set(i, s.setShape(s.getName(), x, y, width,
+                  height, red, green, blue, s.getAppears(), s.getDisappears(), s.getLayer()));
+        }
+        if (currentTime <= s.getDisappears()
+                && currentTime >= s.getAppears()
+                && s.getType().equals("oval")) {
+          g.setColor(new Color(red, green, blue));
+          g.fillOval(Math.round(x), Math.round(y), Math.round(width), Math.round(height));
+          shapes.set(i, s.setShape(s.getName(), x, y, width,
+                  height, red, green, blue, s.getAppears(), s.getDisappears(), s.getLayer()));
+        }
       }
     }
   }
@@ -165,8 +219,10 @@ public class AnimationPanel extends JPanel implements ActionListener {
    * Set the time of the animation according to the slider.
    */
   void setTime(int t) {
+    this.forward = currentTime <= t;
     this.currentTime = t;
     this.slider.setValue(this.currentTime);
+    repaint();
   }
 
   /**
@@ -177,9 +233,10 @@ public class AnimationPanel extends JPanel implements ActionListener {
    * @param moves  list of animations that are being drawn in the panel
    */
   void setNewPanel(ArrayList<Shape> shapes, ArrayList<IAnimation> moves) {
-    this.currentTime = 0;
+    currentTime = 0;
     this.shapes = shapes;
     this.moves = moves;
+    slider.setValue(0);
     timer.restart();
   }
 

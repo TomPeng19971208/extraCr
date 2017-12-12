@@ -2,6 +2,7 @@ package cs3500.hw.controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.FileNotFoundException;
@@ -68,6 +69,19 @@ public class InteractiveController implements AnimationController {
       @Override
       public void stateChanged(ChangeEvent e) {
         view.setTime();
+      }
+    });
+    this.view.getSlider().addMouseListener(new MouseAdapter() {
+      @Override
+      public void mousePressed(MouseEvent e) {
+        super.mousePressed(e);
+        view.getTimer().stop();
+      }
+
+      @Override
+      public void mouseReleased(MouseEvent e) {
+        super.mouseReleased(e);
+        view.getTimer().restart();
       }
     });
   }
